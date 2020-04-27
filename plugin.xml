@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+	xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="cordova-plugin-mkVLC"
+	version="1.0.1">
+
+	<name>Cordova VLC Player</name>
+
+	<description>
+		Cordova VLC Player.
+	</description>
+
+	<author>Mehmet Kalyon</author>
+
+	<license>MIT</license>
+
+	<keywords>Streaming, Media, Video, Audio, Android</keywords>
+
+	<repo>https://github.com/mkalyon/cordova-plugin-mkVLC.git</repo>
+
+	<issue>https://github.com/mkalyon/cordova-plugin-mkVLC/issues</issue>
+
+	<engines>
+		<engine name="cordova" version=">=8.0.0" />
+	</engines>
+
+	<js-module src="www/mkVlc.js" name="mkVlc">
+		<clobbers target="mkVLC" />
+	</js-module>
+
+	<!-- android -->
+	<platform name="android">
+		<framework src="androidx.appcompat:appcompat:1.0.2"/>
+        <framework src="androidx.legacy:legacy-support-v4:1.0.0"/>
+		<framework src="org.videolan.android:libvlc-all:3.1.12"/>
+		<framework src="com.squareup.picasso:picasso:2.71828"/>
+		 <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+			  <application android:usesCleartextTraffic="true" />
+		 </edit-config>
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="mkVLC">
+				<param name="android-package" value="com.mkalyon.cordova.plugins.mkVLC.mkVLC" />
+			</feature>
+		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.INTERNET" />
+		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:configChanges="orientation|screenSize" android:name="com.mkalyon.cordova.plugins.mkVLC.vlcActivity" android:label="vlc" android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+		</config-file>
+		
+		<source-file src="src/res/values/constants.xml" target-dir="res/values/"/>
+
+		<source-file src="src/android/com/mkalyon/mkVLC/mkVLC.java" target-dir="src/com/mkalyon/cordova/plugins/mkVLC" />
+		<source-file src="src/android/com/mkalyon/mkVLC/vlcActivity.java" target-dir="src/com/mkalyon/cordova/plugins/mkVLC" />
+		<source-file src="src/res/layout/activity_main.xml" target-dir="res/layout/"/>
+
+		<source-file src="src/res/drawable/vfastforward.png" target-dir="res/drawable/"/>
+        <source-file src="src/res/drawable/vnext.png" target-dir="res/drawable/"/>
+        <source-file src="src/res/drawable/vpause.png" target-dir="res/drawable/"/>
+        <source-file src="src/res/drawable/vplay.png" target-dir="res/drawable/"/>
+        <source-file src="src/res/drawable/vprevious.png" target-dir="res/drawable/"/>
+        <source-file src="src/res/drawable/vrewind.png" target-dir="res/drawable/"/>
+	</platform>
+
+</plugin>
