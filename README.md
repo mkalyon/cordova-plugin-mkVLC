@@ -4,7 +4,7 @@ For Android, by [mkalyon](https://github.com/mkalyon)
 
 ## Description
 
-
+Cordova Android VLC Player Plugin
 
 ## Message from the maintainer:
 
